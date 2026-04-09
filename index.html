@@ -1,5 +1,552 @@
 <!DOCTYPE html>
 <html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ナカモト - SATOSHI, RYOSUKE, KENGO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2C2C2C;
+            --secondary: #6B6B6B;
+            --accent: #E8E5E1;
+            --bg-main: #FAFAFA;
+            --bg-secondary: #FFFFFF;
+            --border: #E0E0E0;
+            --text-main: #2C2C2C;
+            --text-secondary: #6B6B6B;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 5rem;
+            animation: fadeInDown 0.8s ease;
+        }
+        
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            color: var(--text-main);
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+            animation: slideIn 1s ease;
+            font-weight: 400;
+        }
+        
+        .subtitle {
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+            color: var(--text-secondary);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: fadeIn 1.2s ease;
+            font-weight: 400;
+        }
+        
+        .tabs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .person-tab {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2.5rem 2rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease;
+            animation-fill-mode: both;
+        }
+        
+        .person-tab:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        
+        .person-tab:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .person-tab:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+        
+        .person-tab:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--text-main);
+        }
+        
+        .person-tab.active {
+            border-color: var(--text-main);
+            box-shadow: var(--shadow-lg);
+            background: var(--bg-secondary);
+        }
+        
+        .tab-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1.75rem, 4vw, 2.25rem);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.08em;
+            position: relative;
+            z-index: 1;
+            color: var(--text-main);
+            font-weight: 400;
+        }
+        
+        .tab-subtitle {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.05em;
+            font-weight: 400;
+        }
+        
+        .tab-indicator {
+            width: 100%;
+            height: 1px;
+            background: var(--text-main);
+            margin-top: 1.5rem;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .person-tab.active .tab-indicator {
+            transform: scaleX(1);
+        }
+        
+        .content-area {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .person-content {
+            display: none;
+            padding: 3rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            margin-bottom: 2rem;
+        }
+        
+        .person-content.active {
+            display: block;
+            animation: slideInContent 0.6s ease;
+        }
+        
+        .content-header {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1.5rem, 3.5vw, 2rem);
+            margin-bottom: 2.5rem;
+            letter-spacing: 0.08em;
+            color: var(--text-main);
+            font-weight: 400;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .links-grid {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .link-item {
+            background: var(--bg-main);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1.25rem 1.5rem;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .link-item:hover {
+            transform: translateX(4px);
+            border-color: var(--text-main);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .link-item a {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+            font-size: 0.9375rem;
+        }
+        
+        .link-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--accent);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.125rem;
+            flex-shrink: 0;
+        }
+        
+        .link-text {
+            flex: 1;
+            line-height: 1.6;
+        }
+        
+        .link-arrow {
+            font-size: 1.25rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.25s ease;
+            color: var(--text-secondary);
+        }
+        
+        .link-item:hover .link-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .image-link {
+            display: block;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+        
+        .image-link:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--text-main);
+        }
+        
+        .image-link img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .image-link:hover img {
+            transform: scale(1.02);
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInContent {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .tabs-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .person-tab {
+                padding: 2rem 1.5rem;
+            }
+            
+            .person-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .link-item {
+                padding: 1rem 1.25rem;
+            }
+            
+            header {
+                margin-bottom: 3rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .link-item a {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+            
+            .link-arrow {
+                display: none;
+            }
+            
+            .person-content {
+                padding: 1.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>NAKAMOTO</h1>
+            <p class="subtitle">活動報告 / Activity Report</p>
+        </header>
+        
+        <div class="tabs-container">
+            <div class="person-tab" data-person="satoshi">
+                <div class="tab-name">SATOSHI</div>
+                <div class="tab-subtitle">中本慧思</div>
+                <div class="tab-indicator"></div>
+            </div>
+            
+            <div class="person-tab" data-person="ryosuke">
+                <div class="tab-name">RYOSUKE</div>
+                <div class="tab-subtitle">中本怜祐</div>
+                <div class="tab-indicator"></div>
+            </div>
+            
+            <div class="person-tab" data-person="kengo">
+                <div class="tab-name">KENGO</div>
+                <div class="tab-subtitle">中本賢吾</div>
+                <div class="tab-indicator"></div>
+            </div>
+        </div>
+        
+        <div class="content-area">
+            <!-- SATOSHI Content -->
+            <div class="person-content" id="satoshi-content">
+                <h2 class="content-header">SATOSHI NAKAMOTO / 中本慧思</h2>
+                <div class="links-grid">
+                    <div class="link-item">
+                        <a href="https://youtu.be/6eee5MLBYUU?si=TcHRr6Jqk_VzMzze&t=542" target="_blank" rel="noopener">
+                            <span class="link-icon">📺</span>
+                            <span class="link-text">テレビ東京系列【神山まるごと高専】大手11社が110億円の投資！子供を起業家に育てる【ガイアの夜明け】</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                    
+                    <div class="link-item">
+                        <a href="https://txbiz.tv-tokyo.co.jp/gaia/vod/post_332921?utm_source=txweb&utm_medium=backnumber_bn&utm_campaign=gaia" target="_blank" rel="noopener">
+                            <span class="link-icon">📰</span>
+                            <span class="link-text">テレビ東京公式【神山まるごと高専】VOD</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                    
+                    <div class="link-item">
+                        <a href="https://www.tv-tokyo.co.jp/plus/business/entry/202601/18333.html?utm_source=Twitter&utm_medium=social_btn" target="_blank" rel="noopener">
+                            <span class="link-icon">📝</span>
+                            <span class="link-text">テレビ東京公式【神山まるごと高専】文字起こし記事</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                    
+                    <div class="link-item">
+                        <a href="https://video.unext.jp/episode/SID0265047/ED00764886" target="_blank" rel="noopener">
+                            <span class="link-icon">🎬</span>
+                            <span class="link-text">UNEXT #1199 子供を起業家に育てる ～密着！神山まるごと高専～</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                    
+                    <div class="link-item">
+                        <a href="https://sato4.jp/" target="_blank" rel="noopener">
+                            <span class="link-icon">🌐</span>
+                            <span class="link-text">SATOSHI NAKAMOTO 公式サイト</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <!-- RYOSUKE Content -->
+            <div class="person-content" id="ryosuke-content">
+                <h2 class="content-header">RYOSUKE NAKAMOTO / 中本怜祐</h2>
+                <div class="links-grid">
+                    <div class="link-item">
+                        <a href="https://ryo.nakamoto.ac/" target="_blank" rel="noopener">
+                            <span class="link-icon">🌐</span>
+                            <span class="link-text">RYOSUKE NAKAMOTO 公式サイト</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+
+                    <div class="link-item">
+                        <a href="https://tonari.ac/" target="_blank" rel="noopener">
+                            <span class="link-icon">🌐</span>
+                            <span class="link-text">隣の高専生</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                    <div class="link-item">
+                        <a href="https://www.sanyonews.jp/article/1876853" target="_blank" rel="noopener">
+                            <span class="link-icon">🌐</span>
+                            <span class="link-text">山陽新聞掲載</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                    <div class="link-item">
+                        <a href="https://www.city.mitoyo.lg.jp/hotnews_old/hot08/hot2603/14742.html" target="_blank" rel="noopener">
+                            <span class="link-icon">🌐</span>
+                            <span class="link-text">三豊市市長表敬訪問</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- KENGO Content -->
+            <div class="person-content" id="kengo-content">
+                <h2 class="content-header">KENGO NAKAMOTO / 中本賢吾</h2>
+                <div class="links-grid">
+                    <div class="link-item">
+                        <a href="https://asimatch.com/" target="_blank" rel="noopener">
+                            <span class="link-icon">🌐</span>
+                            <span class="link-text">KENGO NAKAMOTO - asimatch.com</span>
+                            <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Tab switching functionality
+        const tabs = document.querySelectorAll('.person-tab');
+        const contents = document.querySelectorAll('.person-content');
+        const contentArea = document.querySelector('.content-area');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const person = tab.dataset.person;
+                
+                // Remove active class from all tabs and contents
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding content
+                const targetContent = document.getElementById(`${person}-content`);
+                targetContent.classList.add('active');
+                
+                // Expand content area with smooth transition
+                contentArea.style.maxHeight = targetContent.scrollHeight + 100 + 'px';
+                
+                // Smooth scroll to content (with offset for better UX)
+                setTimeout(() => {
+                    const yOffset = -20;
+                    const element = contentArea;
+                    const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    
+                    window.scrollTo({top: y, behavior: 'smooth'});
+                }, 300);
+            });
+        });
+        
+        // Update content area height on window resize
+        window.addEventListener('resize', () => {
+            const activeContent = document.querySelector('.person-content.active');
+            if (activeContent) {
+                contentArea.style.maxHeight = activeContent.scrollHeight + 100 + 'px';
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
