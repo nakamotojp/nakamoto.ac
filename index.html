@@ -368,31 +368,18 @@
             }
         }
 
-        /* 動画を囲むコンテナの比率を16:9に完全固定 */
         .video-container {
           position: relative;
+          display: inline-block;
           width: 100%;
-          padding-top: 56.25%; /* 16:9 の比率 (9 ÷ 16 = 0.5625) */
-          height: 0;
-          overflow: hidden;
+          max-width: 600px; /* お好みのサイズ */
+          cursor: pointer;
         }
         
-        /* 中のiframeをコンテナいっぱいに広げる */
-        .video-container iframe {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100% !important;
-          height: 100% !important;
-        }
-
-        .video-fit {
-          width: 100% !important;
-          height: auto !important;
-          aspect-ratio: 16 / 9 !important;
-          
-          /* 【重要】中身の映像が縦横に変形（歪み）するのを防ぐ設定 */
-          object-fit: cover !important; 
+        .video-container img {
+          width: 100%;
+          height: auto;
+          display: block;
         }
         
                 /* YouTube風の再生ボタン */
@@ -465,8 +452,15 @@
                         <!--<<div class="video-container">-->
                           <!-- <iframe src="https://www.youtube.com/embed/6eee5MLBYUU?si=-NHaTZxmGD4haIgo&amp;start=550" style="width: 100%; height: auto; aspect-ratio: 16 / 9;" frameborder="0" allowfullscreen></iframe> -->
                         <!-- </div> -->
-                        <iframe class="video-fit" src="https://www.youtube.com/watch?v=6eee5MLBYUU&t=550s" frameborder="0" allowfullscreen></iframe>         
+                        <!-- <iframe class="video-fit" src="https://www.youtube.com/watch?v=6eee5MLBYUU&t=550s" frameborder="0" allowfullscreen></iframe>-->         
                         <a href="https://www.youtube.com/watch?v=6eee5MLBYUU&t=550s"  target="_blank" rel="noopener noreferrer">
+                            <img src="https://sato4.jp/assets/image/work/gaia.jpg" alt="ガイアの夜明け" style="width: 100%; height: auto; border-radius: 8px;">
+                            <div class="play-button"></div>
+                        </a>
+                        <!--</div>-->    
+                    </div>
+                    <div class="link-item video-container">
+                       <a href="https://www.youtube.com/watch?v=6eee5MLBYUU&t=550s"  target="_blank" rel="noopener noreferrer">
                             <img src="https://sato4.jp/assets/image/work/gaia.jpg" alt="ガイアの夜明け" style="width: 100%; height: auto; border-radius: 8px;">
                             <div class="play-button"></div>
                         </a>
