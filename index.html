@@ -368,16 +368,22 @@
             }
         }
 
+        /* 動画を囲むコンテナの比率を16:9に完全固定 */
         .video-container {
-          width: 100%; /* 横幅を親要素いっぱいに広げる */
-          max-width: 800px; /* 必要に応じて最大横幅を制限 */
-          margin: 0 auto;
+          position: relative;
+          width: 100%;
+          padding-top: 56.25%; /* 16:9 の比率 (9 ÷ 16 = 0.5625) */
+          height: 0;
+          overflow: hidden;
         }
         
+        /* 中のiframeをコンテナいっぱいに広げる */
         .video-container iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
           width: 100% !important;
-          height: auto !important;
-          aspect-ratio: 16 / 9 !important;
+          height: 100% !important;
         }
 
 
@@ -417,11 +423,12 @@
                 <div class="links-grid">
 
                     <div class="link-item">
-                        <!-- <div class="video-container"> -->
-                          <iframe src="https://www.youtube.com/embed/6eee5MLBYUU?si=-NHaTZxmGD4haIgo&amp;start=550" style="width: 100%; height: auto; aspect-ratio: 16 / 9;" frameborder="0" allowfullscreen></iframe>
+                        <<div class="video-container">
+                          <!-- <iframe src="https://www.youtube.com/embed/6eee5MLBYUU?si=-NHaTZxmGD4haIgo&amp;start=550" style="width: 100%; height: auto; aspect-ratio: 16 / 9;" frameborder="0" allowfullscreen></iframe> -->
                         <!-- </div> -->
-                        <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/6eee5MLBYUU?si=-NHaTZxmGD4haIgo&amp;start=550" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->                    
+                        <iframe src="https://www.youtube.com/embed/6eee5MLBYUU?si=-NHaTZxmGD4haIgo&amp;start=550" frameborder="0" allowfullscreen></iframe>            
                         <!-- <a href="https://www.youtube.com/embed/6eee5MLBYUU?si=-NHaTZxmGD4haIgo&amp;start=550"><img src="https://sato4.jp/assets/image/work/gaia.jpg"></a> -->
+                        </div>    
                     </div>
                     
                     <div class="link-item">
