@@ -394,6 +394,36 @@
           /* 【重要】中身の映像が縦横に変形（歪み）するのを防ぐ設定 */
           object-fit: cover !important; 
         }
+        
+                /* YouTube風の再生ボタン */
+        .play-button {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 68px;
+          height: 48px;
+          background-color: rgba(33, 33, 33, 0.8);
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background-color 0.2s;
+        }
+        
+        /* 再生ボタンの三角アイコン */
+        .play-button::before {
+          content: "";
+          border-style: solid;
+          border-width: 10px 0 10px 16px;
+          border-color: transparent transparent transparent #ffffff;
+          margin-left: 2px;
+        }
+        
+        /* ホバー時に赤くする */
+        .video-container:hover .play-button {
+          background-color: rgba(255, 0, 0, 0.9);
+        }
 
 
     </style>
@@ -438,6 +468,7 @@
                         <iframe class="video-fit" src="https://www.youtube.com/watch?v=6eee5MLBYUU&t=550s" frameborder="0" allowfullscreen></iframe>         
                         <a href="https://www.youtube.com/watch?v=6eee5MLBYUU&t=550s"  target="_blank" rel="noopener noreferrer">
                             <img src="https://sato4.jp/assets/image/work/gaia.jpg" alt="ガイアの夜明け" style="width: 100%; height: auto; border-radius: 8px;">
+                            <div class="play-button"></div>
                         </a>
                         <!--</div>-->    
                     </div>
