@@ -386,6 +386,15 @@
           height: 100% !important;
         }
 
+        .video-fit {
+          width: 100% !important;
+          height: auto !important;
+          aspect-ratio: 16 / 9 !important;
+          
+          /* 【重要】中身の映像が縦横に変形（歪み）するのを防ぐ設定 */
+          object-fit: cover !important; 
+        }
+
 
     </style>
 </head>
@@ -423,12 +432,12 @@
                 <div class="links-grid">
 
                     <div class="link-item">
-                        <<div class="video-container">
+                        <!--<<div class="video-container">-->
                           <!-- <iframe src="https://www.youtube.com/embed/6eee5MLBYUU?si=-NHaTZxmGD4haIgo&amp;start=550" style="width: 100%; height: auto; aspect-ratio: 16 / 9;" frameborder="0" allowfullscreen></iframe> -->
                         <!-- </div> -->
-                        <iframe src="https://www.youtube.com/embed/6eee5MLBYUU?si=-NHaTZxmGD4haIgo&amp;start=550" frameborder="0" allowfullscreen></iframe>            
+                        <iframe class="video-fit" src="https://www.youtube.com/embed/6eee5MLBYUU?si=-NHaTZxmGD4haIgo&amp;start=550" frameborder="0" allowfullscreen></iframe>            
                         <!-- <a href="https://www.youtube.com/embed/6eee5MLBYUU?si=-NHaTZxmGD4haIgo&amp;start=550"><img src="https://sato4.jp/assets/image/work/gaia.jpg"></a> -->
-                        </div>    
+                        <!--</div>-->    
                     </div>
                     
                     <div class="link-item">
