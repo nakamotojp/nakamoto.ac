@@ -10,9 +10,10 @@ interface Props {
   personName?: string;
   url?: string;
   description?: string;
+  image?: string;
 }
 
-const { title, date, category, personId, personName, url, description } = Astro.props;
+const { title, date, category, personId, personName, url, description, image } = Astro.props;
 const formattedDate = formatDate(date);
 const year = date.getFullYear().toString();
 ---
@@ -70,6 +71,37 @@ const year = date.getFullYear().toString();
     </p>
   )}
 
+  {image && (
+    <div class="mt-4 overflow-hidden rounded-xl border border-slate-200 bg-slate-900/5 relative group/img">
+      {url ? (
+        <a href={url} target="_blank" rel="noopener noreferrer" class="block relative">
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+            class="w-full max-h-80 object-cover object-center transition-transform duration-300 group-hover/img:scale-[1.02]"
+          />
+          {category === '動画' && (
+            <div class="absolute inset-0 flex items-center justify-center bg-black/25 group-hover/img:bg-black/35 transition-colors">
+              <div class="w-14 h-10 rounded-xl bg-red-600 flex items-center justify-center shadow-lg transition-transform group-hover/img:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-white ml-0.5">
+                  <path fill-rule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" />
+                </svg>
+              </div>
+            </div>
+          )}
+        </a>
+      ) : (
+        <img
+          src={image}
+          alt={title}
+          loading="lazy"
+          class="w-full max-h-80 object-cover object-center"
+        />
+      )}
+    </div>
+  )}
+
   {url && (
     <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-end">
       <a
@@ -97,4 +129,3 @@ const year = date.getFullYear().toString();
     </div>
   )}
 </article>
-

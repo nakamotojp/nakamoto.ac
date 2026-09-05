@@ -91,7 +91,7 @@ const categoryCounts = personReports.reduce((acc, r) => {
       </p>
     )}
 
-    <div class="mt-4 text-xs text-slate-500 leading-relaxed max-w-3xl border-slate-100">
+    <div class="mt-4 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed max-w-3xl [&_h3]:font-bold [&_h3]:text-slate-800 [&_h3]:text-xs [&_h3]:uppercase [&_h3]:tracking-wider [&_h3]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1.5 [&_a]:text-blue-600 [&_a]:underline hover:[&_a]:text-blue-800">
       <Content />
     </div>
 
@@ -163,6 +163,7 @@ const categoryCounts = personReports.reduce((acc, r) => {
                     personId={report.data.personId}
                     url={report.data.url}
                     description={report.data.description}
+                    image={report.data.image}
                   />
                 ))}
               </div>
