@@ -1,5 +1,5 @@
 ---
-title: 'NHK徳島 四国らしんばん「野心の行く先 "起業家育成"高専のいま」出演'
+title: 'NHK徳島 四国らしんばん「野心の行く先 "起業家育成"高専のいま」'
 date: 2026-09-04
 personId: "ryosuke-nakamoto"
 category: "動画"
