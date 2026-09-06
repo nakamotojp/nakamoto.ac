@@ -1,6 +1,6 @@
 ---
 title: "SATOSHI NAKAMOTO 公式ポートフォリオサイト 公開"
-date: 2026-01-01
+date: 2024-05-08
 personId: "satoshi-nakamoto"
 category: "その他"
 url: "https://sato4.jp/"
