@@ -1,0 +1,131 @@
+---
+import CategoryBadge from './CategoryBadge.astro';
+import { formatDate } from '../utils/categories';
+
+interface Props {
+  title: string;
+  date: Date;
+  category: string;
+  personId: string;
+  personName?: string;
+  url?: string;
+  description?: string;
+  image?: string;
+}
+
+const { title, date, category, personId, personName, url, description, image } = Astro.props;
+const formattedDate = formatDate(date);
+const year = date.getFullYear().toString();
+---
+
+<article
+  class="report-card group relative bg-white border border-slate-200 hover:border-slate-400 rounded-xl p-5 sm:p-6 transition-all duration-200 hover:shadow-md"
+  data-category={category}
+  data-person={personId}
+  data-year={year}
+>
+  <div class="flex flex-wrap items-center justify-between gap-2.5 mb-3">
+    <div class="flex items-center gap-2.5">
+      <time datetime={date.toISOString()} class="text-xs sm:text-sm font-semibold tracking-wide text-slate-500 font-mono">
+        {formattedDate}
+      </time>
+      <CategoryBadge category={category} size="sm" linkable={true} />
+    </div>
+
+    {personName && (
+      <a
+        href={`/person/${personId}`}
+        class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium text-slate-600 bg-slate-100 hover:bg-slate-200 transition-colors"
+      >
+        <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+        <span>{personName}</span>
+      </a>
+    )}
+  </div>
+
+  <h3 class="text-base sm:text-lg font-bold text-slate-900 leading-snug group-hover:text-blue-600 transition-colors">
+    {url ? (
+      <a href={url} target="_blank" rel="noopener noreferrer" class="inline-flex items-baseline gap-1 hover:underline">
+        <span>{title}</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          class="w-4 h-4 text-slate-400 group-hover:text-blue-600 inline-block flex-shrink-0 translate-y-0.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </a>
+    ) : (
+      title
+    )}
+  </h3>
+
+  {description && (
+    <p class="mt-2 text-sm text-slate-600 leading-relaxed line-clamp-2 sm:line-clamp-3">
+      {description}
+    </p>
+  )}
+
+  {image && (
+    <div class="mt-4 overflow-hidden rounded-xl border border-slate-200 bg-slate-900/5 relative group/img">
+      {url ? (
+        <a href={url} target="_blank" rel="noopener noreferrer" class="block relative">
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+            class="w-full max-h-80 object-cover object-center transition-transform duration-300 group-hover/img:scale-[1.02]"
+          />
+          {category === '動画' && (
+            <div class="absolute inset-0 flex items-center justify-center bg-black/25 group-hover/img:bg-black/35 transition-colors">
+              <div class="w-14 h-10 rounded-xl bg-red-600 flex items-center justify-center shadow-lg transition-transform group-hover/img:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-white ml-0.5">
+                  <path fill-rule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" />
+                </svg>
+              </div>
+            </div>
+          )}
+        </a>
+      ) : (
+        <img
+          src={image}
+          alt={title}
+          loading="lazy"
+          class="w-full max-h-80 object-cover object-center"
+        />
+      )}
+    </div>
+  )}
+
+  {url && (
+    <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-end">
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-blue-600 transition-colors"
+      >
+        <span>原典・掲載先を開く</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          class="w-3.5 h-3.5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+          />
+        </svg>
+      </a>
+    </div>
+  )}
+</article>
