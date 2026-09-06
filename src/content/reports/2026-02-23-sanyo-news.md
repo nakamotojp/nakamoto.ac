@@ -2,7 +2,7 @@
 title: "山陽新聞 掲載（神山まるごと高専・起業への挑戦）"
 date: 2026-02-23
 personId: "ryosuke-nakamoto"
-category: "新聞雑誌"
+category: "メディア"
 url: "https://www.sanyonews.jp/article/1876853"
 image: "/山陽新聞中本怜祐.jpg"
 description: "山陽新聞にて、神山まるごと高専での学びやビジネスコンテスト受賞、地域社会への貢献に関する特集記事が写真付きで大きく掲載されました。"
