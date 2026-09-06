@@ -81,7 +81,7 @@ const year = date.getFullYear().toString();
             loading="lazy"
             class="w-full max-h-80 object-cover object-center transition-transform duration-300 group-hover/img:scale-[1.02]"
           />
-          {category === '動画' && (
+          {(category === '動画' || url?.includes('youtube') || url?.includes('youtu.be') || url?.includes('unext')) && (
             <div class="absolute inset-0 flex items-center justify-center bg-black/25 group-hover/img:bg-black/35 transition-colors">
               <div class="w-14 h-10 rounded-xl bg-red-600 flex items-center justify-center shadow-lg transition-transform group-hover/img:scale-110">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-white ml-0.5">

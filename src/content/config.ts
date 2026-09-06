@@ -1,8 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 
 export const CATEGORIES = [
-  '新聞雑誌',
-  '動画',
+  'メディア',
   'コンテスト',
   '起業',
   'その他',
@@ -40,4 +39,3 @@ export const collections = {
   reports: reportsCollection,
   persons: personsCollection,
 };
-

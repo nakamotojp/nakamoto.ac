@@ -1,6 +1,6 @@
 ---
 title: "Startup World Cup（スタートアップワールドカップ）名古屋予選 登壇"
-date: 2026-08-05
+date: 2026-04-26
 personId: "ryosuke-nakamoto"
 category: "コンテスト"
 image: "/img/IMG_StartupWorldCup名古屋大会中本怜祐拡大.JPG"

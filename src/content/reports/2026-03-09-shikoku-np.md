@@ -2,7 +2,7 @@
 title: "四国新聞 掲載（起業家甲子園への挑戦）"
 date: 2026-03-09
 personId: "ryosuke-nakamoto"
-category: "新聞雑誌"
+category: "メディア"
 url: "https://www.shikoku-np.co.jp/bl/digital_news/photo.aspx?id=K2026030900000000900"
 image: "/img/IMG_四国新聞掲載20260308中本怜祐.jpeg"
 description: "四国新聞デジタルおよび紙面にて、総務省・NICT主催「起業家甲子園」全国大会への挑戦に関する特集記事が掲載されました。"
