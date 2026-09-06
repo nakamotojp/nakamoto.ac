@@ -4,6 +4,7 @@ date: 2026-03-02
 personId: "ryosuke-nakamoto"
 category: "その他"
 url: "https://www.city.mitoyo.lg.jp/hotnews_old/hot08/hot2603/14742.html"
+image: "/img/IMG_20260302三豊市長訪問中本怜祐.jpeg"
 description: "ビジネスコンテスト受賞および今後の事業展開の報告のため、三豊市長を表敬訪問いたしました。"
 ---
 
