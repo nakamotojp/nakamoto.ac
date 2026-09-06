@@ -1,6 +1,6 @@
 ---
 title: "HASHBIT株式会社 設立・代表取締役就任"
-date: 2026-01-20
+date: 2026-06-30
 personId: "satoshi-nakamoto"
 category: "起業"
 url: "https://hashbit.co.jp/"
