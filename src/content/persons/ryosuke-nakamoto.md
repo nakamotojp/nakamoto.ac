@@ -9,6 +9,6 @@ order: 2
 
 ### 主なリンク・活動
 - [RYOSUKE NAKAMOTO 公式サイト](https://ryo.nakamoto.ac/)
-- [隣の高専生（自社サービス）](https://tonari.ac/)
+- [隣の高専生（起業しました）](https://tonari.ac/)
 - 富山県南砺市 交流観光まちづくりプランユース会議委員
-- ウメキタStartUp!イノベーター甲子園2026 最優秀賞受賞
+- [令和7年起業家甲子園出場：企業特別賞「WAmazing賞」と「ファイナリスト賞」受賞](https://s.mxtv.jp/variety/kigyokakoshien/)
