@@ -86,3 +86,41 @@ iframe[src*="youtube-nocookie.com"] {
     padding: 1.5rem;
   }
 }
+
+/* -------------------------------------------------
+   1‑column → 2‑column → 3‑column responsive grid
+   ------------------------------------------------- */
+.grid-responsive {
+  /* 1‑column がデフォルト */
+  display: grid;
+  grid-template-columns: 1fr;          /* 1 列 */
+  gap: 1.5rem;                         /* カラム間の隙間 */
+
+  /* 600 px 以上で 2 列に切り替え */
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* 900 px 以上で 3 列に切り替え */
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* カラム内のコンテンツが均等に伸びるように */
+.grid-responsive > * {
+  /* 必要に応じてカードや記事ブロックにパディング等を付与 */
+  background: var(--bg-card, #fff);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* 画像やテキストがはみ出さないように */
+.grid-responsive img,
+.grid-responsive video,
+.grid-responsive iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
