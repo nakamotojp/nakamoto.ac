@@ -4,7 +4,7 @@ date: 2025-11-01
 personId: "ryosuke-nakamoto"
 category: "起業"
 url: "https://tonari.ac/"
-image: "/tonariac.png"
+image: "img/tonariac.png"
 description: "全国の高専生のスキルと企業・地域の課題解決を繋ぐ自社プラットフォームサービス「隣の高専生」を共同創業・リリースしました。"
 ---
 
