@@ -115,7 +115,7 @@ const totalCount = sortedReports.length;
     </div>
 
     <!-- Reports Grid / List -->
-    <div id="reports-list" class="space-y-4">
+    <div id="reports-list" class="space-y-4 grid-responsive">
       {
         sortedReports.map((report) => {
           const person = personsMap.get(report.data.personId);
