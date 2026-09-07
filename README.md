@@ -94,6 +94,9 @@ npm run dev
 # 型チェック
 npm run check
 
+# NFC化(必要に応じて)
+npm run fix:img-refs 
+
 # 静的ビルド (dist/ への出力)
 npm run build
 
