@@ -34,9 +34,9 @@ description: "記事の要約や概要テキストを記述します（省略可
 
 #### 人物ID (`personId`)
 `src/content/persons/` のファイル名（拡張子 `.md` 除く）と紐づきます:
-- `satoshi-nakamoto` (中本 慧思)
-- `ryosuke-nakamoto` (中本 怜祐)
-- `kengo-nakamoto` (中本 賢吾)
+- `satoshi-nakamoto` 
+- `ryosuke-nakamoto` 
+- `kengo-nakamoto` 
 
 ---
 
