@@ -4,6 +4,7 @@ date: 2025-12-20
 personId: "ryosuke-nakamoto"
 category: "コンテスト"
 url: "https://www.city.nanto.toyama.jp/nantoyururitabi/eventjoho/6741.html"
+image: "/img/2025なんちゃれ南砺市中本怜祐.jpg"
 description: "富山県南砺市主催の若者チャレンジビジネスプランコンテスト「なんチャレ2025」にて、最優秀賞を受賞いたしました。"
 ---
 
