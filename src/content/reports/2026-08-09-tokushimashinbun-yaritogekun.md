@@ -3,7 +3,7 @@ title: "徳島新聞：神山高専生ら地元中学生の夏休み学習をお
 date: 2026-08-09
 personId: "satoshi-nakamoto"
 category: "メディア"
-image: "/img/IMG_StartupWorldCup名古屋大会中本怜祐拡大.JPG"
+image: "/img/20260809やりとげ君慧思.jpeg"
 description: "神山高専生ら地元中学生の夏休み学習をお助け　情報共有アプリ「やりとげくん」開発について徳島新聞に掲載されました"
 ---
 
