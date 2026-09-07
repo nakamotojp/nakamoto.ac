@@ -9,7 +9,8 @@
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
     "astro": "ASTRO_TELEMETRY_DISABLED=1 astro",
     "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
-    "copy:img": "mkdir -p public/img && cp -a img/. public/img/"
+    "copy:img": "mkdir -p public/img && cp -a img/. public/img/",
+    "fix:img-refs": "node scripts/fix-image-refs.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
