@@ -4,9 +4,10 @@ import Layout from '../layouts/Layout.astro';
 import ReportCard from '../components/ReportCard.astro';
 import { CATEGORIES, type Category } from '../content/config';
 import { CATEGORY_META_LIST } from '../utils/categories';
+import { resolveReportImages } from '../utils/reportImage';
 
 // Fetch all reports and sort by date descending
-const allReports = await getCollection('reports');
+const allReports = await resolveReportImages(await getCollection('reports'));
 const sortedReports = allReports.sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
