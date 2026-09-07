@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import ReportCard from '../../components/ReportCard.astro';
 import CategoryBadge from '../../components/CategoryBadge.astro';
+import { resolveReportImages } from '../../utils/reportImage';
 
 export async function getStaticPaths() {
   const persons = await getCollection('persons');
@@ -16,7 +17,7 @@ const { person } = Astro.props;
 const { Content } = await person.render();
 
 // Fetch reports for this person
-const allReports = await getCollection('reports');
+const allReports = await resolveReportImages(await getCollection('reports'));
 const personReports = allReports
   .filter((r) => r.data.personId === person.slug)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());

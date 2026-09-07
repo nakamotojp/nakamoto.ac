@@ -58,6 +58,24 @@ order: 1
 
 ---
 
+### 3. アイキャッチ画像 (`image`) の自動補完
+
+`image` を指定しなかった場合、`url` を元に以下の優先順で自動補完されます（`src/utils/reportImage.ts` / `src/utils/screenshot.ts`）:
+
+1. `url` 先ページの `og:image`（無ければ `twitter:image`）
+2. どちらも取得できない場合、`url` のファーストビュー（ビューポート内）をPlaywrightでスクリーンショットし、`img/screenshots/` に保存して使用
+3. スクリーンショットにも失敗した場合、`${url}/ogp.jpg` を推測値として使用（最終フォールバック）
+
+スクリーンショットを実際に生成するには、ローカルで一度だけ以下を実行してください（未実行でもビルドは失敗せず、フォールバック3が使われるだけです）。
+
+```bash
+npx playwright install --with-deps chromium
+```
+
+生成されたスクリーンショットは `img/screenshots/`（`public/img/screenshots/` にも同期）に保存されます。**同じURLは既存ファイルがあれば再撮影されないため、新しい報道・実績を追加してローカルで一度 `npm run build` を実行したら、生成された画像ファイルも他の変更と一緒にコミットしてください。** GitHub Actions側は既存のスクリーンショットを再利用するだけで、新規に生成した画像をリポジトリへコミットし返すことはしません。
+
+---
+
 ## 自動デプロイ (GitHub Pages)
 
 `main` ブランチにプッシュ（またはマージ）されると、`.github/workflows/deploy.yml` により自動でビルドが行われ、GitHub Pages（カスタムドメイン `https://nakamoto.ac/`）に自動反映されます。

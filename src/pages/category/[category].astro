@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import ReportCard from '../../components/ReportCard.astro';
 import { CATEGORY_META_LIST, getCategoryMeta } from '../../utils/categories';
+import { resolveReportImages } from '../../utils/reportImage';
 
 export async function getStaticPaths() {
   const paths = [];
@@ -30,7 +31,7 @@ const { categoryName } = Astro.props;
 const currentMeta = getCategoryMeta(categoryName);
 
 // Fetch all reports matching this category
-const allReports = await getCollection('reports');
+const allReports = await resolveReportImages(await getCollection('reports'));
 const filteredReports = allReports
   .filter((r) => r.data.category === currentMeta.name)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
