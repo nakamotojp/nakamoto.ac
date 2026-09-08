@@ -4,7 +4,7 @@ date: 2026-07-28
 personId: "ryosuke-nakamoto"
 category: "コンテスト"
 url: "https://u-fino.com/event/reports/detail/000568.html"
-image: "/img/IMG_ウメキタStartup甲子園2026コンテスト部門最優秀賞パネル中本怜祐.JPG"
+image: "/img/IMG_ウメキタStartup甲子園2026コンテスト部門最優秀賞パネル中本怜祐.JPG"
 description: "一般社団法人うめきた未来イノベーション機構（U-FINO）主催のピッチコンテストにて、コンテスト部門最優秀賞を受賞しました。"
 ---
 
